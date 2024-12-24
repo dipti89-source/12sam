@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubu Message</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background: url('https://i.ibb.co/S56wp2x/bubu2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            text-align: center;
+        }
+
+        .message-container {
+            position: relative;
+            z-index: 2;
+            width: 80%;
+            max-width: 500px;
+            padding: 1rem;
+        }
+
+        h1 {
+            font-size: 5vw;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            color: #ff66b2; /* Pink color */
+        }
+
+        p {
+            font-size: 3.5vw;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            color: #ffffff; /* Lighter pink */
+        }
+
+        button {
+            font-size: 2vw;
+            padding: 1.5rem 3rem;
+            border: none;
+            background-color: #4caf50; /* Green color */
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 0.5rem;
+            transition: 0.3s;
+            display: inline-block;
+            max-width: 100%; /* Ensure button doesn't overflow */
+            box-sizing: border-box; /* Make padding scale with size */
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #ff66b2;
+            clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 50% 75%, 20% 100%, 0% 35%);
+            animation: float 5s infinite ease-in-out;
+            opacity: 0.8;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        .options {
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 7vw;
+            }
+
+            p {
+                font-size: 5vw;
+            }
+
+            button {
+                font-size: 3vw;
+                padding: 1.2rem 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 8vw;
+            }
+
+            p {
+                font-size: 6vw;
+            }
+
+            button {
+                font-size: 3.5vw;
+                padding: 1rem 2rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="message-container">
+        <h1>Bubu ❤️</h1>
+        <p>I love you so much...</p>
+
+        <button id="marryButton">Will you marry me?</button>
+        <div class="options" id="optionsContainer" style="display: none;">
+            <button id="yesButton" style="background-color: #4caf50;">Yes</button>
+            <button id="noButton" style="background-color: #f44336;">No</button>
+        </div>
+    </div>
+
+    <script>
+        const marryButton = document.getElementById('marryButton');
+        const optionsContainer = document.getElementById('optionsContainer');
+        const yesButton = document.getElementById('yesButton');
+        const noButton = document.getElementById('noButton');
+
+        marryButton.addEventListener('click', () => {
+            optionsContainer.style.display = 'block';
+            marryButton.style.display = 'none';
+        });
+
+        yesButton.addEventListener('click', () => {
+            alert('You both will be married soon. Heartly Congratulations! ❤️');
+            optionsContainer.style.display = 'none';
+            marryButton.style.display = 'inline-block'; 
+        });
+
+        noButton.addEventListener('click', () => {
+            alert('God will keep You both together....you both will be married soon. ❤️');
+            optionsContainer.style.display = 'none';
+            marryButton.style.display = 'inline-block'; 
+        });
+
+        // Heart animation
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
+            heart.style.bottom = '0'; // Start from the bottom of the page
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's'; // Random float speed
+            document.body.appendChild(heart);
+
+            // Remove the heart after its animation ends
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Generate a heart every 250ms
+        setInterval(createHeart, 250);
+    </script>
+</body>
+</html>
